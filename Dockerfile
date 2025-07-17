@@ -16,7 +16,6 @@
 
 #########################################################################################
 
-
 FROM python:3.12-slim
 
 LABEL name="browseruse" \
@@ -212,7 +211,6 @@ RUN mkdir -p "$DATA_DIR/profiles/default" \
         && echo -e "BUILD_END_TIME=$(date +"%Y-%m-%d %H:%M:%S %s")\n\n" \
     ) | tee -a /VERSION.txt
 
-
 USER "$BROWSERUSE_USER"
 VOLUME "$DATA_DIR"
 EXPOSE 9242
@@ -221,4 +219,4 @@ EXPOSE 9222
 # HEALTHCHECK --interval=30s --timeout=20s --retries=15 \
 #     CMD curl --silent 'http://localhost:8000/health/' | grep -q 'OK'
 
-ENTRYPOINT ["browser-use"]
+ENTRYPOINT ["browser-use", "serve"]
